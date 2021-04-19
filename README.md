@@ -123,10 +123,9 @@ I made the request to scoring uri and got json response back as prediction. With
 ![](images/request-payload.PNG)
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
+
+Here is my screencast video demonstrating my project - [youtube](https://youtu.be/oAQvcDCzJ1g)
+
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
-
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
