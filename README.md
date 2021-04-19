@@ -72,20 +72,55 @@ Result from AutoML was impressive, here I am adding those
 ```
 Accuracy score was `.89` that's why I deployed this one over hyperdrive one. Accuracy was my primary metric.
 
+Improvement could be done with data imbalance issue, data imputation issue.
+
 ![](images/automl-run.PNG)
 ![](images/model-run-id.PNG)
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
+I choosed `Logistic Regression` for this experiment where my hyperparameter sampling was this 
+
+```
+param_sampling = RandomParameterSampling({'C': uniform(0, 20),
+                                        'max_iter' : quniform(10, 250, 1),
+                                        'solver' : choice('liblinear','sag','lbfgs', 'saga')})
+```
+after the model went for `max_total_runs=100 and max_concurrent_runs=4` but the accuracy was less then the automl one.
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+
+I got the accuracy of `.84` with this model where best hyperparameter tuning was 
+
+```
+['--C', '0.7567505122372808', '--max_iter', '65', '--solver', 'lbfgs']
+``` 
+and overall best was for this model
+
+```
+[{'best_primary_metric': 0.8484848484848485,
+  'hyperparameters': '{"C": 0.7567505122372808, "max_iter": 65.0, "solver": '
+                     '"lbfgs"}',
+  'run_id': 'HD_b81e1da9-a3ba-4352-89f1-06451a3e5654_26',
+  'status': 'Completed'}]
+```
+As this model didn't do well with primary metric I didn't deploy this.
+
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
+![](images/hyper-run.PNG)
+![](images/hyper-best-model.PNG)
+
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+I deployed the automl one with `ACIWebService` and with the scoring URI and I made request to the endpoint. Here is the active endpoint - 
+
+![](images/active-endpoint.PNG)
+
+I made the request to scoring uri and got json response back as prediction. With this image you will have better demonstration
+
+![](images/request-payload.PNG)
 
 ## Screen Recording
 *TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
